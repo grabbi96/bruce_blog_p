@@ -1,0 +1,34 @@
+{
+  "name": "bruce_blog",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start:api": "lerna exec --stream --scope=@blog/api -- yarn start",
+    "start:dashboard": "lerna exec --scope=@blog/dashboard -- yarn start"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix"
+    ],
+    "*": [
+      "pretty-quick --staged"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.5.3",
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0"
+  }
+}

@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  baseImage:
+    image: base
+    env_file: ${ENV_FILE}
+    build: .
+  api:
+    image: base
+    command: >
+      sh -c "yarn run start:api "
+    env_file: ${ENV_FILE}
+    depends_on:
+      - mongo
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    restart: always
+  mongo:
+    container_name: mongo
+    image: 'bitnami/mongodb:latest'
+    environment:
+      - MONGODB_USERNAME=root
+      - MONGODB_PASSWORD=${DATABASE_PASSWORD}
+      - MONGODB_DATABASE=bruce_blog
+    ports:
+      - 27017:27017
+    volumes:
+      - database:/data/db
+
+volumes:
+  database:
