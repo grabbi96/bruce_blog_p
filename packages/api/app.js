@@ -24,7 +24,7 @@ mongoose
     console.log('Connected to mongodb');
   })
   .catch((error) => {
-    console.log('Connection to mongodb was not successful! hellow', error);
+    console.log('Connection to mongodb was not successful!', error);
   });
 
 // parse application/x-www-form-urlencoded
